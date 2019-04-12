@@ -24,12 +24,14 @@ app.get('', (req,res)=>{
     name: 'Roman Kislov'
   })
 })
+
 app.get('/about', (req,res)=>{
   res.render('about', {
     title: 'About Me',
     name: 'Roman Kislov'
   })
 })
+
 app.get('/help', (req,res)=>{
   res.render('help', {
     title: 'Help Page',
@@ -37,12 +39,31 @@ app.get('/help', (req,res)=>{
     message: 'Help message'
   })
 })
+
 app.get("/weather", (req, res) => {
   res.send({
     forecast: "it is snowing",
     location: "Philadelphia"
   });
 });
+
+app.get('/help/*', (req,res)=>{
+    res.render('404',{
+      title: '404',
+      name: 'Roman Kislov',
+      message:'help article not found'
+    })
+})
+
+
+app.get('*', (req,res)=>{
+  res.render('404', {
+    title: '404',
+    name: 'Roman Kislov',
+    message:'Page not found'
+  })
+})
+
 
 app.listen(3000, () => {
   console.log("Server is up on port 3000");
